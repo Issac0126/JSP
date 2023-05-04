@@ -26,4 +26,35 @@
     <!--
     <Manager pathname="" />
     -->
+    
+    <Resource
+        auth="Container" 
+        name="jdbc/myOracle" 
+        username="jsp" 
+        password="jsp"
+        driverClassName="oracle.jdbc.driver.OracleDriver" 
+        url="jdbc:oracle:thin:@localhost:1521:xe"
+        type="javax.sql.DataSource"
+        maxIdle="30"
+        maxTotal="100"
+        maxWaitMillis="10000"
+    />
+    <!-- 
+    maxIdle: 대기시켜둘 커넥션(?)
+    maxTotal: 대기시킨 커넥션이 다 나갔을 경우의 최대 커넥션 개수
+    maxWaitMillis: 일정 시간을 넘기면 에러로 판단 후 피드백 "10000"=1초
+    -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </Context>
