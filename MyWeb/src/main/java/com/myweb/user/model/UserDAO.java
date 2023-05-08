@@ -40,7 +40,6 @@ public class UserDAO {
 			dao = new UserDAO();
 		}
 		return dao;
-		
 	}
 	
 	//////////////////////////////////////////
@@ -136,20 +135,64 @@ public class UserDAO {
 		return user;
 	}
 
+	
 	public void changePassword(String userId, String newPw) {
 		String sql = "UPDATE my_user"
-				+ " SET user_pw = '"+newPw+"' WHERE user_id= '"+userId+"'";
+				+ " SET user_pw =? WHERE user_id=?";
 		
 		try(Connection conn = ds.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
-			
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, userId);
 			pstmt.executeUpdate();
 			
+			
+			System.out.println("비밀번호 변경 업데이트 중");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
+
+	public void updateUser(UserVO vo) {
+		String sql = "UPDATE my_user"
+				+ " SET user_name = ?, user_email = ?, user_address = ?"
+				+ " WHERE user_id = ?";
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, vo.getUserName());
+			pstmt.setString(2, vo.getUserEmail());
+			pstmt.setString(3, vo.getUserAddress());
+			pstmt.setString(4, vo.getUserId());
+			
+			System.out.println("회원 정보 수정 중 / id: "+vo.getUserId());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public void deleteUser(String id) {
+		String sql = "DELETE FROM my_user"
+				+ " WHERE user_id = '"+id+"'";
+		
+		try(Connection conn = ds.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			
+			System.out.println(id+" 회원의 정보를 삭제합니다.");
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 	
 	
 	

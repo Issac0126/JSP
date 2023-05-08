@@ -36,9 +36,9 @@ public class LoginService implements IUserService {
 		UserDAO dao = UserDAO.getInstance();
 		response.setContentType("text/html; charset=UTF-8");
 		String htmlCode;
+		PrintWriter out;
 				
 		int result = dao.userCheck(id, pw);
-		PrintWriter out;
 		
 		try {
 			out = response.getWriter();
