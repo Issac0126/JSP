@@ -18,11 +18,19 @@ public interface IBoardDAO {
 	
 	
 	//글 수정 요청을 처리할 메서드 (제목, 내용)
-	void updateBoard(String title, String content, int dId);
+	void updateBoard(String title, String content, int bId);
 	
 	
 	//글 삭제 요청을 처리할 메서드
 	void deleteBoard(int dId);
+	
+	
+	//글 검색 요청을 처리할 메서드
+	List<BoardVO> searchBoard(String keyword, String category);
+	
+	
+	//조회수를 올려주는 메서드
+	void upHit(int dId);
 	
 	
 	
